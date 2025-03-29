@@ -22,20 +22,13 @@ This MCP server allows AI assistants to interact with Google Sheets through a st
 
 ### Setup
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/google-sheets-mcp.git
-cd google-sheets-mcp
-```
-
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
+2. Set up environment variables:
 
 Create a `.env` file in the project root with the following variables:
 
@@ -45,7 +38,7 @@ CLIENT_ID=your-oauth-client-id
 CLIENT_SECRET=your-oauth-client-secret
 ```
 
-4. Place your OAuth credentials JSON file in the project root as `gcp-oauth.keys.json` or set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to point to your credentials file.
+3. Place your OAuth credentials JSON file in the project root as `gcp-oauth.keys.json` or set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to point to your credentials file.
 
 ## Usage
 
