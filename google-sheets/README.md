@@ -53,6 +53,83 @@ This server supports two types of authentication:
 1. **Service Account**: For server-to-server applications
 2. **OAuth 2.0**: For applications acting on behalf of users
 
+## Setting Up OAuth for Google Sheets API
+
+To use this MCP server with OAuth authentication, you need to set up a Google Cloud project and create OAuth 2.0 credentials. Follow these steps:
+
+### 1. Create a Google Cloud Project
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Click on the project dropdown at the top of the page
+3. Click on "New Project"
+4. Enter a name for your project and click "Create"
+5. Wait for the project to be created and then select it from the project dropdown
+
+### 2. Enable Required APIs
+
+1. In your Google Cloud project, navigate to "APIs & Services" > "Library"
+2. Search for and enable the following APIs:
+   - Google Sheets API
+   - Google Drive API (required for listing sheets)
+
+### 3. Configure OAuth Consent Screen
+
+1. Go to "APIs & Services" > "OAuth consent screen"
+2. Select "External" user type (unless you have a Google Workspace organization)
+3. Click "Create"
+4. Fill in the required fields:
+   - App name: (e.g., "My Sheets MCP")
+   - User support email: Your email address
+   - Developer contact information: Your email address
+5. Click "Save and Continue"
+6. On the "Scopes" page, click "Add or Remove Scopes"
+7. Add the following scopes:
+   - `https://www.googleapis.com/auth/spreadsheets` (for sheet operations)
+   - `https://www.googleapis.com/auth/drive.readonly` (for listing sheets)
+8. Click "Save and Continue"
+9. On the "Test users" page, click "Add Users" and add your email address
+10. Click "Save and Continue" and then "Back to Dashboard"
+
+### 4. Create OAuth 2.0 Credentials
+
+1. Go to "APIs & Services" > "Credentials"
+2. Click "Create Credentials" > "OAuth client ID"
+3. Select "Desktop app" as the application type
+4. Enter a name for your OAuth client (e.g., "Sheets MCP Client")
+5. Click "Create"
+6. Click "Download JSON" to download your credentials file
+7. Rename the downloaded file to `credentials.json`
+
+### 5. Use the Credentials with the MCP Server
+
+There are two ways to use your OAuth credentials with the MCP server:
+
+#### Option 1: Place in Default Location
+
+Place the `credentials.json` file in the same directory as the server.py file.
+
+#### Option 2: Specify via Environment Variable
+
+Set the `GOOGLE_CREDENTIALS_FILE` environment variable to the path of your credentials file when configuring the MCP server in your Claude Desktop or Cline settings.
+
+### 6. First-Time Authentication Flow
+
+The first time you use the MCP server with OAuth credentials:
+
+1. The server will detect that you don't have a token file
+2. A browser window will automatically open
+3. You'll be asked to sign in with your Google account
+4. You'll see a warning that the app isn't verified - click "Continue"
+5. Grant permission to access your Google Sheets and Drive (read-only)
+6. After successful authentication, the browser will show "Authentication successful"
+7. The token will be saved to `token.json` (or the path specified in `GOOGLE_TOKEN_FILE`)
+8. Subsequent uses of the MCP server will use this token without requiring re-authentication
+
+### OAuth vs. Service Account
+
+- **OAuth 2.0**: Best for personal use or when you need to access the user's own sheets. Requires the user to go through the authentication flow.
+- **Service Account**: Best for automated systems or when you need to access specific sheets shared with the service account. No user interaction required, but sheets must be explicitly shared with the service account email.
+
 ## Usage
 
 ### Integrating with Claude
