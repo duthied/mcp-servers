@@ -1,0 +1,17 @@
+[project]
+name = "mcp-template"
+version = "0.1.0"
+description = "Template MCP server"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp>=1.6.0",
+    "mirascope[openai]>=1.22.1",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+g-dataops = "g_dataops:main"

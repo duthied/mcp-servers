@@ -1,0 +1,19 @@
+[project]
+name = "google-sheets"
+version = "0.1.0"
+description = "Google Sheets MCP server"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=1.0.0",
+    "google-auth>=2.0.0",
+    "google-api-python-client>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+google-sheets = "server:main"
