@@ -1,4 +1,4 @@
-# Google Sheets MCP Server
+# Google Sheets MCP Server (python)
 
 A Model Context Protocol (MCP) server that provides tools for interacting with Google Sheets. This server allows you to read and write data, update cells, add formulas, and apply formatting to Google Sheets.
 
